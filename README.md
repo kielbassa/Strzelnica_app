@@ -17,7 +17,7 @@ Otwórz drugie okno terminala WSL, po czym w katologu projektu skonfiguruj bazę
 ## Otwarcie klienta webowego
 W dowolnej przeglądarcę wpisz adres http://localhost:3000/
 
-dostęp do bazy i wpisywanie danych zachodzi poprzez `bin/rails console`
+bezspośredni dostęp do bazy i wpisywanie danych zachodzi poprzez `bin/rails console`
 
 #### tworzenie użytkownika poprzez konsolę:
 <code>User.create! email_address: "you@example.org", password: "s3cr3t", password_confirmation: "s3cr3t" </code>
