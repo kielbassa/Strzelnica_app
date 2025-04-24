@@ -1,5 +1,4 @@
 class ClientsController < ApplicationController
-
   before_action :set_client, only: %i[ show edit update destroy ]
   allow_unauthenticated_access only: %i[ index show ]
   def index
@@ -39,14 +38,12 @@ class ClientsController < ApplicationController
     redirect_to clients_path
   end
 
-
   private
   def set_client
     @client = Client.find(params[:id])
   end
 
   def client_params
-    params.expect(client: [:name])
+    params.expect(client: [ :name ])
   end
-
 end
