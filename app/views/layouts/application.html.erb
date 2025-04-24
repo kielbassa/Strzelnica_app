@@ -26,6 +26,7 @@
       <nav>
             <%= link_to "Home", root_path %>
             <%= link_to "Login", new_session_path unless authenticated? || controller_name == 'sessions' %>
+            <%= link_to "Register", new_user_path unless authenticated? || controller_name == 'users' %>
             <%= button_to "Log out", session_path, method: :delete if authenticated? %>
           </nav>
 
