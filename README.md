@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instalacja Ruby ond Rails 
+https://guides.rubyonrails.org/install_ruby_on_rails.html#install-ruby-on-windows
 
-Things you may want to cover:
+Na systemie Windows użyć **Windows Subsystem for Linux (WSL)**
 
-* Ruby version
+## Wstępna konfiguracja i uruchomienie aplikacji
+Zainstaluj potrzebne dependencje komendą `bundle update`
 
-* System dependencies
+Aby włączyć serwer aplikacji, będąc w katalogu **/Strzelnica_app** uruchom serwer komendą `bin/rails server`
 
-* Configuration
+Otwórz drugie okno terminala WSL, po czym w katologu projektu skonfiguruj bazę danych komendą `bin/rails db:migrate`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Otwarcie klienta webowego
+W dowolnej przeglądarcę wpisz adres http://127.0.0.1:3000/
