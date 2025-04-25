@@ -1,4 +1,13 @@
+<style>
+div {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: start;
+}
+</style>
+
 <h1>New client</h1>
 
 <%= render "form", client: @client %>
-<%= link_to "Cancel", clients_path %>
+<div><%= link_to "Cancel", clients_path %></div>
