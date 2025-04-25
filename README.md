@@ -25,6 +25,7 @@ Wpisz `.output filename.txt`, następnie `.dump`, a następnie `.quit`
 Zawartość bazy zostanie zapisana w pliku filename.txt
 
 ## Import do bazy
+Usuń poprzednią bazę danych `/Strzelnica_app/storage/development.sqlite3`
 Wejdź do katalogu **/Strzelnica_app** i uruchom komendę `bin/rails db` aby otworzyć interfejs konsolowy bazy danych.
 Wpisz `.read filename.txt`, a następnie `.quit`
 Zawartość bazy zostanie zaimportowana z pliku filename.txt
