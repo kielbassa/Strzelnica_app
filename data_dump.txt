@@ -1,0 +1,32 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
+INSERT INTO schema_migrations VALUES('20250424170425');
+INSERT INTO schema_migrations VALUES('20250424190456');
+INSERT INTO schema_migrations VALUES('20250424190457');
+INSERT INTO schema_migrations VALUES('20250425101045');
+INSERT INTO schema_migrations VALUES('20250425101339');
+INSERT INTO schema_migrations VALUES('20250425101407');
+CREATE TABLE IF NOT EXISTS "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL);
+INSERT INTO ar_internal_metadata VALUES('environment','development','2025-04-25 09:08:28.899187','2025-04-25 09:08:28.899188');
+CREATE TABLE IF NOT EXISTS "clients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "surname" varchar /*application='Strzelnica'*/, "age" integer /*application='Strzelnica'*/, "phoneNumber" varchar /*application='Strzelnica'*/);
+INSERT INTO clients VALUES(5,'Karol','2025-04-25 10:27:50.884379','2025-04-25 10:27:50.884379','Narel',20,'123456789');
+INSERT INTO clients VALUES(6,'Miłosz','2025-04-25 10:35:04.060157','2025-04-25 10:35:04.060157','Antkiewicz',20,'123456789');
+INSERT INTO clients VALUES(9,'Jan','2025-04-25 13:01:43.020369','2025-04-25 13:01:43.020369','Łęgowski',21,'123456789');
+INSERT INTO clients VALUES(10,'Bianka','2025-04-25 16:53:29.558670','2025-04-25 16:53:29.558670','Krysiak',21,'123456789');
+CREATE TABLE IF NOT EXISTS "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email_address" varchar NOT NULL, "password_digest" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL);
+INSERT INTO users VALUES(1,'karol.narel@icloud.com','$2a$12$aJPg9g6BF5olu3sltVzrFuAwQBcl3wEiScq5Im7CbW1Mk2CW3c.SG','2025-04-25 09:29:53.716993','2025-04-25 09:29:53.716993');
+INSERT INTO users VALUES(2,'1234@email.com','$2a$12$g2y2pFzDwPfQ7vYAnyTyhuETKj.tvOR5zpGxRfCmFVwnURI6ZdtHK','2025-04-25 10:07:07.141785','2025-04-25 10:07:07.141785');
+CREATE TABLE IF NOT EXISTS "sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "ip_address" varchar, "user_agent" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_758836b4f0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+);
+INSERT INTO sessions VALUES(13,2,'127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:137.0) Gecko/20100101 Firefox/137.0','2025-04-25 16:24:19.539981','2025-04-25 16:24:19.539981');
+INSERT INTO sessions VALUES(14,1,'192.168.1.169','Mozilla/5.0 (iPhone; CPU iPhone OS 18_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Mobile/15E148 Safari/604.1','2025-04-25 16:51:26.765303','2025-04-25 16:51:26.765303');
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('users',2);
+INSERT INTO sqlite_sequence VALUES('sessions',14);
+INSERT INTO sqlite_sequence VALUES('clients',10);
+CREATE UNIQUE INDEX "index_users_on_email_address" ON "users" ("email_address") /*application='Strzelnica'*/;
+CREATE INDEX "index_sessions_on_user_id" ON "sessions" ("user_id") /*application='Strzelnica'*/;
+COMMIT;
