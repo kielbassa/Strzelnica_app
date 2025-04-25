@@ -20,7 +20,7 @@ W dowolnej przeglądarcę wpisz adres http://localhost:3000/
 bezspośredni dostęp do bazy i wpisywanie danych zachodzi poprzez `bin/rails console`
 
 ## Eksport bazy
-Wejdź do katalogu **/Strzelnica_app** i uruchom komendę `bin/rails db` aby otworzyć interfejs konsolowy bazy danych.
+Po upewnieniu, że na komputerze mamy zainstalowane sqlite3, wejdź do katalogu **/Strzelnica_app** i uruchom komendę `bin/rails db` aby otworzyć interfejs konsolowy bazy danych.
 Wpisz `.output filename.txt`, następnie `.dump`, a następnie `.quit`
 Zawartość bazy zostanie zapisana w pliku filename.txt
 
