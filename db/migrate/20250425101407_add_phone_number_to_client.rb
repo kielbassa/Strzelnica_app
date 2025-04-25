@@ -1,0 +1,5 @@
+class AddPhoneNumberToClient < ActiveRecord::Migration[8.0]
+  def change
+    add_column :clients, :phoneNumber, :string
+  end
+end

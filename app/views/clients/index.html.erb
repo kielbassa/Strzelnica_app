@@ -1,11 +1,12 @@
-<h1>Clients</h1>
+<h1>Strzelnica</h1>
+<h2>Clients</h2>
+
+<ul id="clients">
+  <% @clients.each do |client| %>
+    <li>
+        <p><%= link_to client.name, client %> <%= client.surname %> </p>
+    </li>
+  <% end %>
+</ul>
 
 <%= link_to "New client", new_client_path if authenticated? %>
-
-<div id="clients">
-  <% @clients.each do |client| %>
-    <div>
-        <%= link_to client.name, client %>
-    </div>
-  <% end %>
-</div>

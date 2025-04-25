@@ -24,26 +24,30 @@ nav {
     padding: 1rem;
 }
 
-nav a {
-    display: inline-block;
-}
-
 main {
     max-width: 1024px;
     margin: 0 auto;
+}
+
+footer {
+    justify-content: flex-bottom;
+    display: flex;
+
+    text-align: bottom;
+    padding: 1rem;
 }
 
 .notice {
     color: green;
 }
 
-section.product {
+section.client {
     display: flex;
     gap: 1rem;
     flex-direction: row;
 }
 
-section.product img {
+section.client img {
     border-radius: 8px;
     flex-basis: 50%;
     max-width: 50%;

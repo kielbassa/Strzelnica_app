@@ -2,8 +2,13 @@
   <h1><%= @client.name %></h1>
 <% end %>
 
-<%= link_to "Back", clients_path %>
 <% if authenticated? %>
+    <body>surname <%= @client.surname %> </body> <br>
+    <body>age <%= @client.age %> </body> <br>
+    <body>Phone number <%= @client.phoneNumber %> </body> <br>
+
 <%= link_to "Edit", edit_client_path(@client) %>
 <%= button_to "Delete", @client, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
 <% end %>
+
+<%= link_to "Back", clients_path %>
