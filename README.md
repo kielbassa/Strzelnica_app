@@ -19,6 +19,16 @@ W dowolnej przeglądarcę wpisz adres http://localhost:3000/
 
 bezspośredni dostęp do bazy i wpisywanie danych zachodzi poprzez `bin/rails console`
 
+## Eksport bazy
+Wejdź do katalogu **/Strzelnica_app** i uruchom komendę `bin/rails db` aby otworzyć interfejs konsolowy bazy danych.
+Wpisz `.output filename.txt`, następnie `.dump`, a następnie `.quit`
+Zawartość bazy zostanie zapisana w pliku filename.txt
+
+## Import do bazy
+Wejdź do katalogu **/Strzelnica_app** i uruchom komendę `bin/rails db` aby otworzyć interfejs konsolowy bazy danych.
+Wpisz `.read filename.txt`, a następnie `.quit`
+Zawartość bazy zostanie zaimportowana z pliku filename.txt
+
 #### tworzenie użytkownika poprzez konsolę:
 <code>User.create! email_address: "you@example.org", password: "s3cr3t", password_confirmation: "s3cr3t" </code>
 
