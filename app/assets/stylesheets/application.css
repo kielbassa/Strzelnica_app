@@ -17,14 +17,17 @@ body {
 table {
     border: 2px solid black;
     border-collapse: collapse;
+    text-decoration: none;
 }
 table th {
     border: 1px solid black;
     text-align: left;
+    text-decoration: none;
 }
 table td {
     border: 1px solid black;
     border-collapse: collapse;
+    text-decoration: none;
 }
 
 nav {

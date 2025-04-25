@@ -3,7 +3,7 @@
 <table id="clients">
   <% @clients.each do |client| %>
     <tr>
-        <td><%= link_to client.name, client %> <%= client.surname %> </td>
+        <td><%= link_to client.name + ' ' + client.surname, client %> </td>
     </tr>
   <% end %>
 </table>

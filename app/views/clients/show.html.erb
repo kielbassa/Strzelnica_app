@@ -1,12 +1,14 @@
 <% cache @client do %>
-  <h1><%= @client.name %></h1>
+  <h2><%= @client.name %></h2>
 <% end %>
 
 <% if authenticated? %>
-    <body>surname <%= @client.surname %> </body> <br>
-    <body>age <%= @client.age %> </body> <br>
-    <body>Phone number <%= @client.phoneNumber %> </body> <br>
-
+    <ul>
+        <li>Name - <%= @client.name %> </li>
+        <li>Surname - <%= @client.surname %> </li>
+        <li>Age - <%= @client.age %> </li>
+        <li>Phone number - <%= @client.phoneNumber %> </li>
+    </ul>
 <%= link_to "Edit", edit_client_path(@client) %>
 <%= button_to "Delete", @client, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
 <% end %>
