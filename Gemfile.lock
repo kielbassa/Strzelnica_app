@@ -127,7 +127,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.11.2)
+    json (2.11.3)
     kamal (2.5.3)
       activesupport (>= 7.0)
       base64 (~> 0.2)
@@ -387,4 +387,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   2.6.8
+   2.6.7

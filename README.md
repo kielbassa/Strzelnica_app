@@ -1,6 +1,6 @@
 # README
 
-## Instalacja Ruby ond Rails 
+## Instalacja Ruby ond Rails
 https://guides.rubyonrails.org/install_ruby_on_rails.html#install-ruby-on-windows
 
 Na systemie Windows użyj **Windows Subsystem for Linux (WSL)**
@@ -21,3 +21,5 @@ bezspośredni dostęp do bazy i wpisywanie danych zachodzi poprzez `bin/rails co
 
 #### tworzenie użytkownika poprzez konsolę:
 <code>User.create! email_address: "you@example.org", password: "s3cr3t", password_confirmation: "s3cr3t" </code>
+
+https://guides.rubyonrails.org/getting_started.html
