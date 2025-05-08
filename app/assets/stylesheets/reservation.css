@@ -1,0 +1,131 @@
+body {
+    background-image: url('../zdj/main-background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .contact-title {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 2px solid #fff;
+  }
+  
+  .reservation {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: black;
+    padding: 2rem;
+    margin: 3rem auto;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+  
+  .reservation h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .reservation form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .reservation select,
+  .reservation input,
+  .reservation button {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .reservation-title {
+    text-align: center;
+    color: red;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .reservation button {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .reservation button:hover {
+    background-color: darkred;
+  }
+  
+  .reservation-info {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  .reservation-info .highlight {
+    color: #ff4d4d;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .pricing-title {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff4d4d;
+    text-align: center;
+  }
+  
+  .pricing-table {
+    width: 50%; 
+    margin: auto;
+    margin-top: 0.5rem;
+    border-collapse: collapse;
+  }
+  
+  .pricing-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    color: white;
+  }
+  
+  .pricing-table td:first-child {
+    width: 50%;
+  }
+  
