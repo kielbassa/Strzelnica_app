@@ -1,0 +1,89 @@
+body {
+    background-image: url('../zdj/main-zdj3.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact-title {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 3rem;
+    text-align: center;
+  }
+  
+  .contact-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 2px solid #fff;
+  }
+  
+  .left-column {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .location-img {
+    width: 100%;
+    max-width: 400px; 
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .right-column {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .right-column h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .right-column p {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  
+  .right-column strong {
+    font-weight: bold;
+  }
+  
+footer {
+  background-color: #1c1c1c;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  font-size: 0.8rem;
+}
+
+footer img {
+  width: 100px;
+  margin-bottom: 5px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.75rem;
+}

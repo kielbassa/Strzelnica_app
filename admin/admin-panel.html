@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel Administratora</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+
+<body>
+
+  <!-- Pasek u góry -->
+  <header class="header">
+    <h1 class="header-title">Panel Administratora</h1>
+    <a href="../pages/index.html" class="back-link">Powrót na stronę</a>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Dostępne bronie -->
+    <section>
+      <h2 class="section-title">Lista dostępnych broni palnych</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nazwa</th>
+              <th>Typ amunicji</th>
+              <th>Gotowość</th>
+              <th>W użyciu</th>
+            </tr>
+          </thead>
+          <tbody id="bronieTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Typy amunicji -->
+    <section>
+      <h2 class="section-title">Lista typów amunicji</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nazwa</th>
+              <th>Ilość</th>
+              <th>Cena</th>
+            </tr>
+          </thead>
+          <tbody id="amunicjaTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Rezerwacja -->
+    <section>
+      <h2 class="section-title">Rezerwacja</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Dzień</th>
+              <th>Godzina</th>
+              <th>Klient</th>
+              <th>Grupa</th>
+              <th>Stanowisko</th>
+            </tr>
+          </thead>
+          <tbody id="rezerwacjeTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Klienci -->
+    <section>
+      <h2 class="section-title">Klienci</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Imię</th>
+              <th>Nazwisko</th>
+              <th>Typ członkostwa</th>
+            </tr>
+          </thead>
+          <tbody id="klienciTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Członkostwo -->
+    <section>
+      <h2 class="section-title">Członkostwo</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Typ</th>
+              <th>Klient</th>
+              <th>Data rozpoczęcia</th>
+              <th>Data kolejnej opłaty</th>
+            </tr>
+          </thead>
+          <tbody id="czlonkowieTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Transakcje -->
+    <section>
+      <h2 class="section-title">Transakcje</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>ID Amunicji</th>
+              <th>Ilość</th>
+            </tr>
+          </thead>
+          <tbody id="transakcjeTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Stanowiska strzeleckie -->
+    <section>
+      <h2 class="section-title">Stanowiska strzeleckie</h2>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Maksymalna ilość osób</th>
+            </tr>
+          </thead>
+          <tbody id="stanowiskaTable">
+            <!-- Dane -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

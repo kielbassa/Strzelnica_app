@@ -1,0 +1,255 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+.header-section {
+  background-image: url('../zdj/main-background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 120px;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 0 40px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.sm-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-left: 0;
+}
+
+.sm-item {
+  display: flex;
+  align-items: center;
+}
+
+.sm-logo {
+  height: 1.5rem;
+  margin-right: 0.3rem;
+}
+
+.sm-item span {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 15rem !important;
+}
+
+.auth-links {
+  display: flex;
+  gap: 2rem;
+  margin-left: 0;
+}
+.auth-link {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: red;
+}
+
+.main-nav {
+  background-image: url('../zdj/main-background.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-link.active {
+  color: red;
+}
+
+.nav-link.active::after {
+  content: ''; 
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: red; 
+  position: absolute;
+  left: 0; 
+  bottom: -5px;
+}
+
+.nav-link:hover {
+  color: red;
+}
+
+.banner-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.background-section {
+  background-image: url('../zdj/main-background.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.img-container {
+  position: relative;
+  width: 25%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.img-container:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.img-container:hover .overlay {
+  opacity: 1;
+}
+
+.btn-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.hover-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid white;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.hover-btn:hover {
+  background-color: #333;
+  border-color: white;
+}
+
+
+.img-container:hover .overlay {
+  opacity: 0.3; 
+}
+
+.contact-section {
+  background-image: url('../zdj/main-background.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: white;
+}
+
+.contact-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.contact-text {
+  font-size: 1rem;
+}
+
+footer {
+  background-color: #1c1c1c;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+footer img {
+  width: 80px;
+  margin: 0 auto 1rem;
+}
