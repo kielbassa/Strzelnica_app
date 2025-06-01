@@ -28,7 +28,9 @@ $auth->preventLoginAccess(); // Redirect if already logged in
         <button type="submit" id="loginBtn">Zaloguj się</button>
       </form>
       <div style="margin-top: 15px; text-align: center;">
-        <p>Nie masz konta? <a href="../pages/register.php" style="color: #007bff; text-decoration: none;">Zarejestruj się</a></p>
+        <p style="color: white;">Nie masz konta? 
+        <a href="../pages/register.php" style="color: red; text-decoration: none;">Zarejestruj się</a>
+        </p>
       </div>
     </div>
   </div>

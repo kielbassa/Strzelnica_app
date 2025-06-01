@@ -72,7 +72,7 @@ input:focus {
 button {
   background-color: red;
   border: none;
-  color: black;
+  color: white; /* Biały napis na przycisku */
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -80,7 +80,18 @@ button {
 
 button:hover {
   background-color: darkred;
-  color: white;
+  color: white; /* Zachowanie białego napisu po najechaniu */
+}
+
+/* Stylowanie dla linku "Zarejestruj się" */
+a[href="../pages/register.php"] {
+  color: red;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a[href="../pages/register.php"]:hover {
+  color: #ff4444; /* Jaśniejszy czerwony po najechaniu */
 }
 
 .zamknij {
@@ -90,15 +101,10 @@ button:hover {
   font-size: 1.5rem;
   cursor: pointer;
   background-color: red;
-  color: black;
+  color: white;
   border: none;
   padding: 0 10px;
   border-radius: 5px;
   line-height: 1.2;
   transition: background-color 0.3s ease;
-}
-
-.zamknij:hover {
-  background-color: darkred;
-  color: white;
 }

@@ -13,59 +13,6 @@ $userData = $auth->getUserData();
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="../css/styles.css" />
         <script src="../js/auth.js"></script>
-        <style>
-            .auth-container {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            .user-info {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            .welcome-text {
-                color: #333;
-                font-weight: bold;
-            }
-            .logout-btn {
-                background-color: #dc3545;
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 4px;
-                cursor: pointer;
-                text-decoration: none;
-                font-size: 14px;
-            }
-            .logout-btn:hover {
-                background-color: #c82333;
-            }
-            .auth-buttons {
-                display: flex;
-                gap: 10px;
-            }
-            .login-btn, .register-btn {
-                padding: 8px 16px;
-                text-decoration: none;
-                border-radius: 4px;
-                font-size: 14px;
-            }
-            .login-btn {
-                background-color: #007bff;
-                color: white;
-            }
-            .login-btn:hover {
-                background-color: #0056b3;
-            }
-            .register-btn {
-                background-color: #28a745;
-                color: white;
-            }
-            .register-btn:hover {
-                background-color: #1e7e34;
-            }
-        </style>
     </head>
 
     <body>
@@ -107,7 +54,14 @@ $userData = $auth->getUserData();
 
             <div class="auth-links">
                 <div id="authContainer" class="auth-container">
-                    <?php echo $auth->getLoginButton(); ?>
+                    <?php if ($userData): ?>
+                        <div class="user-header-info">
+                            <span class="welcome-header-text">Witaj, <?php echo htmlspecialchars($userData['full_name']); ?>!</span>
+                            <a href="index.php?logout=true" class="logout-header-btn">Wyloguj się</a>
+                        </div>
+                    <?php else: ?>
+                        <?php echo $auth->getLoginButton(); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -123,13 +77,26 @@ $userData = $auth->getUserData();
             <a href="../pages/kontakt.php" class="nav-link">Kontakt</a>
         </nav>
 
+        <!-- Modal for welcome message -->
         <?php if ($userData): ?>
-            <div style="background-color: #e6ffe6; padding: 15px; margin: 20px; border-radius: 5px; border: 1px solid #28a745;">
-                <h3 style="margin: 0 0 10px 0; color: #28a745;">Witaj w systemie, <?php echo htmlspecialchars($userData['full_name']); ?>!</h3>
-                <p style="margin: 0; color: #333;">Zalogowany jako: <?php echo htmlspecialchars($userData['email']); ?></p>
+            <div id="welcomeModal" class="modal">
+                <div class="modal-content welcome-modal">
+                    <span class="close" onclick="closeWelcomeModal()">&times;</span>
+                    <h3>Witaj w systemie, <?php echo htmlspecialchars($userData['full_name']); ?>!</h3>
+                    <p>Zalogowany jako: <?php echo htmlspecialchars($userData['email']); ?></p>
+                </div>
             </div>
         <?php endif; ?>
 
+        <!-- Modal for logout success -->
+        <div id="logoutModal" class="modal">
+            <div class="modal-content logout-modal">
+                <span class="close" onclick="closeLogoutModal()">&times;</span>
+                <h3>Wylogowano pomyślnie!</h3>
+            </div>
+        </div>
+
+        <!-- Rest of your content remains the same -->
         <section class="banner-section">
             <img
                 src="../zdj/banner.jpg"
@@ -216,16 +183,48 @@ $userData = $auth->getUserData();
                 Projekt i wykonanie chrust
             </p>
         </footer>
-
         <script src="../js/buttons.js"></script>
         <script src="../js/navbar.js"></script>
         <script src="../js/user_auth.js"></script>
         <script>
+            // Modal functions
+            function closeWelcomeModal() {
+                document.getElementById('welcomeModal').style.display = 'none';
+            }
+            
+            function closeLogoutModal() {
+                document.getElementById('logoutModal').style.display = 'none';
+            }
+            
             // Initialize authentication on page load
             document.addEventListener('DOMContentLoaded', function() {
                 // Check if user is logged in and update UI accordingly
                 if (window.userAuth) {
                     window.userAuth.checkSession();
+                }
+                
+                // Show welcome modal if user just logged in
+                <?php if ($userData && !isset($_SESSION['welcome_shown'])): ?>
+                    document.getElementById('welcomeModal').style.display = 'block';
+                    <?php $_SESSION['welcome_shown'] = true; ?>
+                <?php endif; ?>
+                
+                // Show logout modal if just logged out
+                <?php if (isset($_SESSION['show_logout_modal'])): ?>
+                    document.getElementById('logoutModal').style.display = 'block';
+                    <?php unset($_SESSION['show_logout_modal']); ?>
+                <?php endif; ?>
+                
+                // Close modals when clicking outside
+                window.onclick = function(event) {
+                    const welcomeModal = document.getElementById('welcomeModal');
+                    const logoutModal = document.getElementById('logoutModal');
+                    if (event.target == welcomeModal) {
+                        welcomeModal.style.display = 'none';
+                    }
+                    if (event.target == logoutModal) {
+                        logoutModal.style.display = 'none';
+                    }
                 }
             });
         </script>
