@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Cze 01, 2025 at 02:27 PM
--- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.0.30
+-- Host: localhost
+-- Generation Time: Jun 01, 2025 at 04:04 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `ammo`
+-- Table structure for table `ammo`
 --
 
 CREATE TABLE `ammo` (
@@ -49,7 +49,7 @@ INSERT INTO `ammo` (`ID_ammo`, `name`, `amount`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `clients`
+-- Table structure for table `clients`
 --
 
 CREATE TABLE `clients` (
@@ -118,7 +118,7 @@ INSERT INTO `clients` (`ID_client`, `name`, `surname`, `ID_membership`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `guns`
+-- Table structure for table `guns`
 --
 
 CREATE TABLE `guns` (
@@ -153,7 +153,7 @@ INSERT INTO `guns` (`ID_guns`, `name`, `ID_ammo`, `availability`, `in_use`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `membership`
+-- Table structure for table `membership`
 --
 
 CREATE TABLE `membership` (
@@ -222,7 +222,7 @@ INSERT INTO `membership` (`ID_membership`, `type`, `activation_date`, `expiratio
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `reservations`
+-- Table structure for table `reservations`
 --
 
 CREATE TABLE `reservations` (
@@ -304,7 +304,7 @@ INSERT INTO `reservations` (`ID_reservations`, `date`, `time`, `ID_client`, `par
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `stations`
+-- Table structure for table `stations`
 --
 
 CREATE TABLE `stations` (
@@ -329,7 +329,7 @@ INSERT INTO `stations` (`ID_station`, `slots`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `transactions`
+-- Table structure for table `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -540,38 +540,63 @@ INSERT INTO `transactions` (`ID_transaction`, `ID_ammo`, `ID_client`, `count`) V
 (194, 4, 33, 10),
 (195, 1, 41, 30);
 
+-- --------------------------------------------------------
+
 --
--- Indeksy dla zrzutów tabel
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_active` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Tabela użytkowników systemu';
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password_hash`, `created_at`, `updated_at`, `is_active`) VALUES
+(1, 'Test', 'User', 'test1748786291@example.com', '$2y$10$bDuwBzRMUBav3YCyv23vbuEDC3hFmLIIHrbJKf31BhZqXGlHHLr7K', '2025-06-01 13:58:11', '2025-06-01 13:58:11', 1),
+(2, 'Test', 'User', 'test1748786537@example.com', '$2y$10$Jf3HciytiWawyyTIluBXguu4ne9sKRZKprPx5QN.YW90lgu99mmry', '2025-06-01 14:02:17', '2025-06-01 14:02:17', 1);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `ammo`
+-- Indexes for table `ammo`
 --
 ALTER TABLE `ammo`
   ADD PRIMARY KEY (`ID_ammo`);
 
 --
--- Indeksy dla tabeli `clients`
+-- Indexes for table `clients`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`ID_client`),
   ADD UNIQUE KEY `ID_membership` (`ID_membership`) USING BTREE;
 
 --
--- Indeksy dla tabeli `guns`
+-- Indexes for table `guns`
 --
 ALTER TABLE `guns`
   ADD PRIMARY KEY (`ID_guns`),
   ADD KEY `ID_ammo` (`ID_ammo`);
 
 --
--- Indeksy dla tabeli `membership`
+-- Indexes for table `membership`
 --
 ALTER TABLE `membership`
   ADD PRIMARY KEY (`ID_membership`);
 
 --
--- Indeksy dla tabeli `reservations`
+-- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`ID_reservations`),
@@ -579,18 +604,25 @@ ALTER TABLE `reservations`
   ADD KEY `ID_station` (`ID_station`);
 
 --
--- Indeksy dla tabeli `stations`
+-- Indexes for table `stations`
 --
 ALTER TABLE `stations`
   ADD PRIMARY KEY (`ID_station`);
 
 --
--- Indeksy dla tabeli `transactions`
+-- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`ID_transaction`),
   ADD KEY `ID_ammo` (`ID_ammo`),
   ADD KEY `ID_client` (`ID_client`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -637,6 +669,12 @@ ALTER TABLE `stations`
 --
 ALTER TABLE `transactions`
   MODIFY `ID_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
