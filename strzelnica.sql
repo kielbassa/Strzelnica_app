@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 01, 2025 at 04:04 PM
+-- Generation Time: Jun 01, 2025 at 09:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -54,66 +54,68 @@ INSERT INTO `ammo` (`ID_ammo`, `name`, `amount`, `price`) VALUES
 
 CREATE TABLE `clients` (
   `ID_client` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `name` text NOT NULL,
   `surname` text NOT NULL,
-  `ID_membership` int(11) NOT NULL
+  `ID_membership` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Klienci wraz z członkostwem';
 
 --
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`ID_client`, `name`, `surname`, `ID_membership`) VALUES
-(1, 'Krzysztof', 'Mazur', 23),
-(2, 'Andrzej', 'Wójcik', 31),
-(3, 'Mateusz', 'Nowak', 29),
-(4, 'Agnieszka', 'Witkowska', 17),
-(5, 'Magdalena', 'Witkowska', 44),
-(6, 'Paweł', 'Sikora', 18),
-(7, 'Tomasz', 'Piotrowski', 2),
-(8, 'Adam', 'Krawczyk', 12),
-(9, 'Piotr', 'Nowak', 7),
-(10, 'Paweł', 'Krawczyk', 27),
-(11, 'Agnieszka', 'Witkowska', 5),
-(12, 'Barbara', 'Wiśniewska', 45),
-(13, 'Magdalena', 'Dąbrowska', 24),
-(14, 'Maria', 'Woźniak', 25),
-(15, 'Marcin', 'Krawczyk', 41),
-(16, 'Michał', 'Mazur', 40),
-(17, 'Adam', 'Dudek', 3),
-(18, 'Andrzej', 'Kowalczyk', 4),
-(19, 'Andrzej', 'Krawczyk', 38),
-(20, 'Paweł', 'Dudek', 36),
-(21, 'Katarzyna', 'Szymańska', 9),
-(22, 'Maria', 'Kamińska', 16),
-(23, 'Aleksandra', 'Majewska', 22),
-(24, 'Maria', 'Witkowska', 35),
-(25, 'Krzysztof', 'Wójcik', 46),
-(26, 'Aleksandra', 'Majewska', 21),
-(27, 'Mateusz', 'Grabowski', 50),
-(28, 'Paweł', 'Mazur', 1),
-(29, 'Piotr', 'Grabowski', 42),
-(30, 'Barbara', 'Wiśniewska', 10),
-(31, 'Michał', 'Nowak', 19),
-(32, 'Katarzyna', 'Wiśniewska', 47),
-(33, 'Paweł', 'Piotrowski', 39),
-(34, 'Ewa', 'Szymańska', 13),
-(35, 'Marcin', 'Mazur', 33),
-(36, 'Anna', 'Zając', 8),
-(37, 'Adam', 'Nowak', 30),
-(38, 'Michał', 'Piotrowski', 11),
-(39, 'Andrzej', 'Piotrowski', 43),
-(40, 'Mateusz', 'Dudek', 14),
-(41, 'Joanna', 'Szymańska', 26),
-(42, 'Joanna', 'Majewska', 48),
-(43, 'Krzysztof', 'Piotrowski', 20),
-(44, 'Katarzyna', 'Zając', 34),
-(45, 'Mateusz', 'Dudek', 6),
-(46, 'Piotr', 'Kowalczyk', 32),
-(47, 'Agnieszka', 'Kamińska', 15),
-(48, 'Andrzej', 'Grabowski', 49),
-(49, 'Maria', 'Kamińska', 37),
-(50, 'Joanna', 'Witkowska', 28);
+INSERT INTO `clients` (`ID_client`, `user_id`, `name`, `surname`, `ID_membership`) VALUES
+(1, NULL, 'Krzysztof', 'Mazur', 23),
+(2, NULL, 'Andrzej', 'Wójcik', 31),
+(3, NULL, 'Mateusz', 'Nowak', 29),
+(4, NULL, 'Agnieszka', 'Witkowska', 17),
+(5, NULL, 'Magdalena', 'Witkowska', 44),
+(6, NULL, 'Paweł', 'Sikora', 18),
+(7, NULL, 'Tomasz', 'Piotrowski', 2),
+(8, NULL, 'Adam', 'Krawczyk', 12),
+(9, NULL, 'Piotr', 'Nowak', 7),
+(10, NULL, 'Paweł', 'Krawczyk', 27),
+(11, NULL, 'Agnieszka', 'Witkowska', 5),
+(12, NULL, 'Barbara', 'Wiśniewska', 45),
+(13, NULL, 'Magdalena', 'Dąbrowska', 24),
+(14, NULL, 'Maria', 'Woźniak', 25),
+(15, NULL, 'Marcin', 'Krawczyk', 41),
+(16, NULL, 'Michał', 'Mazur', 40),
+(17, NULL, 'Adam', 'Dudek', 3),
+(18, NULL, 'Andrzej', 'Kowalczyk', 4),
+(19, NULL, 'Andrzej', 'Krawczyk', 38),
+(20, NULL, 'Paweł', 'Dudek', 36),
+(21, NULL, 'Katarzyna', 'Szymańska', 9),
+(22, NULL, 'Maria', 'Kamińska', 16),
+(23, NULL, 'Aleksandra', 'Majewska', 22),
+(24, NULL, 'Maria', 'Witkowska', 35),
+(25, NULL, 'Krzysztof', 'Wójcik', 46),
+(26, NULL, 'Aleksandra', 'Majewska', 21),
+(27, NULL, 'Mateusz', 'Grabowski', 50),
+(28, NULL, 'Paweł', 'Mazur', 1),
+(29, NULL, 'Piotr', 'Grabowski', 42),
+(30, NULL, 'Barbara', 'Wiśniewska', 10),
+(31, NULL, 'Michał', 'Nowak', 19),
+(32, NULL, 'Katarzyna', 'Wiśniewska', 47),
+(33, NULL, 'Paweł', 'Piotrowski', 39),
+(34, NULL, 'Ewa', 'Szymańska', 13),
+(35, NULL, 'Marcin', 'Mazur', 33),
+(36, NULL, 'Anna', 'Zając', 8),
+(37, NULL, 'Adam', 'Nowak', 30),
+(38, NULL, 'Michał', 'Piotrowski', 11),
+(39, NULL, 'Andrzej', 'Piotrowski', 43),
+(40, NULL, 'Mateusz', 'Dudek', 14),
+(41, NULL, 'Joanna', 'Szymańska', 26),
+(42, NULL, 'Joanna', 'Majewska', 48),
+(43, NULL, 'Krzysztof', 'Piotrowski', 20),
+(44, NULL, 'Katarzyna', 'Zając', 34),
+(45, NULL, 'Mateusz', 'Dudek', 6),
+(46, NULL, 'Piotr', 'Kowalczyk', 32),
+(47, NULL, 'Agnieszka', 'Kamińska', 15),
+(48, NULL, 'Andrzej', 'Grabowski', 49),
+(49, NULL, 'Maria', 'Kamińska', 37),
+(50, NULL, 'Joanna', 'Witkowska', 28),
+(151, 10, 'Karol', 'Narel', 1000);
 
 -- --------------------------------------------------------
 
@@ -217,7 +219,9 @@ INSERT INTO `membership` (`ID_membership`, `type`, `activation_date`, `expiratio
 (47, 'Premium', '2025-05-29', '2025-06-29'),
 (48, 'VIP', '2025-05-21', '2025-06-21'),
 (49, 'VIP', '2025-05-24', '2025-06-24'),
-(50, 'VIP', '2025-05-27', '2025-06-27');
+(50, 'VIP', '2025-05-27', '2025-06-27'),
+(999, 'No Membership', '1970-01-01', '1970-01-01'),
+(1000, 'Standard', '2025-06-01', '2025-07-01');
 
 -- --------------------------------------------------------
 
@@ -562,8 +566,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password_hash`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'Test', 'User', 'test1748786291@example.com', '$2y$10$bDuwBzRMUBav3YCyv23vbuEDC3hFmLIIHrbJKf31BhZqXGlHHLr7K', '2025-06-01 13:58:11', '2025-06-01 13:58:11', 1),
-(2, 'Test', 'User', 'test1748786537@example.com', '$2y$10$Jf3HciytiWawyyTIluBXguu4ne9sKRZKprPx5QN.YW90lgu99mmry', '2025-06-01 14:02:17', '2025-06-01 14:02:17', 1);
+(10, 'Karol', 'Narel', 'karolnarel@gmail.com', '$2y$10$Co9I/yZKEFsTfk8UAcFJAeUezO0r4.iLpiS3yeMdNbXJt9qsSV2Am', '2025-06-01 19:41:28', '2025-06-01 19:41:43', 1);
 
 --
 -- Indexes for dumped tables
@@ -580,7 +583,10 @@ ALTER TABLE `ammo`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`ID_client`),
-  ADD UNIQUE KEY `ID_membership` (`ID_membership`) USING BTREE;
+  ADD UNIQUE KEY `ID_membership` (`ID_membership`) USING BTREE,
+  ADD UNIQUE KEY `unique_user_client` (`user_id`),
+  ADD KEY `idx_clients_user_id` (`user_id`),
+  ADD KEY `idx_clients_membership` (`ID_membership`);
 
 --
 -- Indexes for table `guns`
@@ -638,7 +644,7 @@ ALTER TABLE `ammo`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ID_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `ID_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `guns`
@@ -650,7 +656,7 @@ ALTER TABLE `guns`
 -- AUTO_INCREMENT for table `membership`
 --
 ALTER TABLE `membership`
-  MODIFY `ID_membership` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `ID_membership` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
 
 --
 -- AUTO_INCREMENT for table `reservations`
@@ -674,7 +680,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -684,7 +690,8 @@ ALTER TABLE `users`
 -- Constraints for table `clients`
 --
 ALTER TABLE `clients`
-  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`ID_membership`) REFERENCES `membership` (`ID_membership`);
+  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`ID_membership`) REFERENCES `membership` (`ID_membership`),
+  ADD CONSTRAINT `clients_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `guns`
