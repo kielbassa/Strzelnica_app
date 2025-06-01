@@ -1,6 +1,6 @@
 const modal = document.getElementById("membership-modal");
 const btn = document.getElementById("join-btn");
-const closeBtn = document.querySelector(".close");
+const closeBtn = document.querySelector("#membership-modal .close");
 const form = document.getElementById("membership-form");
 
 btn.onclick = function() {
