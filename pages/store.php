@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/auth_helper.php';
+require_once "../includes/auth_helper.php";
 $auth = getAuthHelper();
 $userData = $auth->getUserData();
 ?>
@@ -17,7 +17,7 @@ $userData = $auth->getUserData();
 <body>
   <!-- Flash messages -->
   <?php $auth->displayFlashMessage(); ?>
-  
+
   <!-- logo i nazwa -->
   <header class="header-section">
     <div class="sm-container">
@@ -34,18 +34,18 @@ $userData = $auth->getUserData();
         <span>Strefa Strzału Gdynia</span>
       </div>
     </div>
-  
+
     <div class="logo-container">
       <img src="../zdj/logo.png" alt="Logo" class="logo">
     </div>
-  
+
     <div class="auth-links">
       <div id="authContainer" class="auth-container">
         <?php echo $auth->getLoginButton(); ?>
       </div>
     </div>
     </header>
-      
+
   <!-- pasek nawigacyjny -->
   <nav class="main-nav">
     <a href="../pages/index.php" class="nav-link" id="home-link">Strona Główna</a>
@@ -60,8 +60,12 @@ $userData = $auth->getUserData();
       <div id="welcomeModal" class="modal">
           <div class="modal-content welcome-modal">
               <span class="close" onclick="closeWelcomeModal()">&times;</span>
-              <h3>Witaj w systemie, <?php echo htmlspecialchars($userData['full_name']); ?>!</h3>
-              <p>Zalogowany jako: <?php echo htmlspecialchars($userData['email']); ?></p>
+              <h3>Witaj w systemie, <?php echo htmlspecialchars(
+                  $userData["full_name"]
+              ); ?>!</h3>
+              <p>Zalogowany jako: <?php echo htmlspecialchars(
+                  $userData["email"]
+              ); ?></p>
           </div>
       </div>
   <?php endif; ?>
@@ -79,20 +83,54 @@ $userData = $auth->getUserData();
       <table class="club-info-table">
         <thead>
           <tr>
-            <th colspan="5">Dołącz do naszego Klubu Strzeleckiego!</th>
+            <th colspan="5">Klub Strzelecki</th>
           </tr>
         </thead>
         <tbody>
+          <?php if (
+              $userData &&
+              isset($userData["client"]) &&
+              $userData["client"] &&
+              $userData["client"]["has_active_membership"]
+          ): ?>
           <tr>
             <td colspan="5">
+              <strong>🎉 Jesteś członkiem klubu!</strong><br>
+              Typ członkostwa: <strong><?php echo htmlspecialchars(
+                  $userData["client"]["membership_type"]
+              ); ?></strong><br>
+              Ważne do: <strong><?php echo htmlspecialchars(
+                  $userData["client"]["expiration_date"]
+              ); ?></strong><br>
+              Korzystasz ze zniżek klubowych i priorytetowych rezerwacji.
+            </td>
+          </tr>
+          <?php elseif ($userData): ?>
+          <tr>
+            <td colspan="5">
+              Nie masz aktywnego członkostwa. Dołącz do naszego Klubu Strzeleckiego!<br>
               Uzyskaj dostęp do zniżek, specjalnych wydarzeń i priorytetowych rezerwacji. Członkostwo już od <strong>50 zł miesięcznie</strong>.
             </td>
           </tr>
           <tr>
             <td colspan="5" class="text-center">
-              <button id="join-btn" class="join-btn">Zapisz się teraz</button>
+              <button id="join-btn" class="join-btn">Kup członkostwo</button>
             </td>
           </tr>
+          <?php else: ?>
+          <tr>
+            <td colspan="5">
+              Dołącz do naszego Klubu Strzeleckiego!<br>
+              Uzyskaj dostęp do zniżek, specjalnych wydarzeń i priorytetowych rezerwacji. Członkostwo już od <strong>50 zł miesięcznie</strong>.<br>
+              <small><em>Musisz być zalogowany, aby kupić członkostwo.</em></small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="text-center">
+              <a href="../pages/login.php" class="join-btn">Zaloguj się</a>
+            </td>
+          </tr>
+          <?php endif; ?>
         </tbody>
       </table>
 
@@ -115,7 +153,7 @@ $userData = $auth->getUserData();
           <tr><td>HK z tłumikiem</td><td>9x19 mm</td><td>2.80 zł</td><td>250</td><td><button>Dodaj do koszyka</button></td></tr>
           <tr><td>Vis 100</td><td>9x19 mm</td><td>2.40 zł</td><td>400</td><td><button>Dodaj do koszyka</button></td></tr>
           <tr><td>.357 Magnum</td><td>9x32Rmm</td><td>5.00 zł</td><td>100</td><td><button>Dodaj do koszyka</button></td></tr>
-  
+
           <tr class="category-row"><td colspan="5">Broń Długa</td></tr>
           <tr><td>AR-15</td><td>.223 Rem</td><td>6.00 zł</td><td>200</td><td><button>Dodaj do koszyka</button></td></tr>
           <tr><td>kbk wz. 96D „Beryl”</td><td>5.56 NATO</td><td>4.00 zł</td><td>180</td><td><button>Dodaj do koszyka</button></td></tr>
@@ -142,29 +180,41 @@ $userData = $auth->getUserData();
   <div id="membership-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>Zapisz się do Klubu Strzeleckiego</h2>
-      
+      <h2>Kup Członkostwo w Klubie Strzeleckim</h2>
+
       <form id="membership-form">
+        <?php if ($userData): ?>
+        <div class="form-group">
+          <div class="info" style="background: #000000; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <strong>Kupujesz członkostwo dla:</strong><br>
+            <?php echo htmlspecialchars(
+                $userData["full_name"]
+            ); ?> (<?php echo htmlspecialchars($userData["email"]); ?>)
+          </div>
+        </div>
+        <?php else: ?>
         <div class="form-group">
           <label for="firstname">Imię</label>
           <input type="text" id="firstname" name="firstname" required>
         </div>
-        
+
         <div class="form-group">
           <label for="lastname">Nazwisko</label>
           <input type="text" id="lastname" name="lastname" required>
         </div>
-        
+
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required>
         </div>
-        
+
         <div class="form-group">
           <label for="idNumber">Numer dowodu osobistego</label>
           <input type="text" id="idNumber" name="idNumber" required>
         </div>
-        
+        <?php endif; ?>
+</edits>
+
         <div class="form-group membership-type-section">
           <label>Rodzaj członkostwa</label>
           <div class="radio-group">
@@ -180,7 +230,7 @@ $userData = $auth->getUserData();
             <label for="vip">VIP (200 zł/miesiąc)</label>
           </div>
         </div>
-        
+
         <div id="transfer-details" class="payment-details">
           <p class="bank-info">
             Dane do przelewu:<br>
@@ -189,7 +239,7 @@ $userData = $auth->getUserData();
             Tytuł: Członkostwo - [Imię i Nazwisko]
           </p>
         </div>
-        
+
         <div class="form-group terms-group">
           <div class="terms-text">
             Akceptuję <a href="#">regulamin klubu</a> i wyrażam zgodę na przetwarzanie moich danych osobowych
@@ -199,7 +249,7 @@ $userData = $auth->getUserData();
             <label for="terms">Akceptuję</label>
           </div>
         </div>
-        
+
         <div class="form-group submit-group">
           <button type="submit" class="submit-btn">Zapisz się</button>
         </div>
@@ -211,7 +261,7 @@ $userData = $auth->getUserData();
       <img src="../zdj/logo.png" alt="Logo">
       <p>Wszelkie prawa zastrzeżone dla strefastrzalu.pl © 2025 | Projekt i wykonanie chrust</p>
     </footer>
-    
+
     <script src="../js/buttons.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/auth.js"></script>
@@ -223,30 +273,30 @@ $userData = $auth->getUserData();
       function closeWelcomeModal() {
           document.getElementById('welcomeModal').style.display = 'none';
       }
-      
+
       function closeLogoutModal() {
           document.getElementById('logoutModal').style.display = 'none';
       }
-      
+
       // Initialize authentication on page load
       document.addEventListener('DOMContentLoaded', function() {
           // Check if user is logged in and update UI accordingly
           if (window.userAuth) {
               window.userAuth.checkSession();
           }
-          
+
           // Show welcome modal if user just logged in
-          <?php if ($userData && !isset($_SESSION['welcome_shown'])): ?>
+          <?php if ($userData && !isset($_SESSION["welcome_shown"])): ?>
               document.getElementById('welcomeModal').style.display = 'block';
-              <?php $_SESSION['welcome_shown'] = true; ?>
+              <?php $_SESSION["welcome_shown"] = true; ?>
           <?php endif; ?>
-          
+
           // Show logout modal if just logged out
-          <?php if (isset($_SESSION['show_logout_modal'])): ?>
+          <?php if (isset($_SESSION["show_logout_modal"])): ?>
               document.getElementById('logoutModal').style.display = 'block';
-              <?php unset($_SESSION['show_logout_modal']); ?>
+              <?php unset($_SESSION["show_logout_modal"]); ?>
           <?php endif; ?>
-          
+
           // Close modals when clicking outside
           window.onclick = function(event) {
               const welcomeModal = document.getElementById('welcomeModal');

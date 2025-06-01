@@ -22,6 +22,9 @@ class User
     public function register()
     {
         try {
+            // Start transaction to ensure both user and client are created together
+            $this->conn->beginTransaction();
+
             $query =
                 "INSERT INTO " .
                 $this->table_name .
@@ -33,6 +36,7 @@ class User
 
             if (!$stmt) {
                 error_log("User::register() - Failed to prepare statement");
+                $this->conn->rollBack();
                 return false;
             }
 
@@ -54,17 +58,29 @@ class User
             if ($stmt->execute()) {
                 $this->id = $this->conn->lastInsertId();
                 error_log("User::register() - Success! New user ID: " . $this->id);
-                return true;
+
+                // Create corresponding client record
+                if ($this->createClientRecord()) {
+                    $this->conn->commit();
+                    return true;
+                } else {
+                    error_log("User::register() - Failed to create client record");
+                    $this->conn->rollBack();
+                    return false;
+                }
             } else {
                 $errorInfo = $stmt->errorInfo();
                 error_log("User::register() - Execute failed: " . print_r($errorInfo, true));
+                $this->conn->rollBack();
                 return false;
             }
         } catch (PDOException $e) {
             error_log("User::register() - PDO Exception: " . $e->getMessage());
+            $this->conn->rollBack();
             return false;
         } catch (Exception $e) {
             error_log("User::register() - General Exception: " . $e->getMessage());
+            $this->conn->rollBack();
             return false;
         }
     }
@@ -185,6 +201,95 @@ class User
     {
         // Password must be at least 8 characters long
         return strlen($password) >= 8;
+    }
+
+    /**
+     * Create a client record for the newly registered user
+     * @return bool
+     */
+    private function createClientRecord()
+    {
+        try {
+            $query = "INSERT INTO clients (user_id, name, surname, ID_membership) 
+                      VALUES (:user_id, :name, :surname, NULL)";
+
+            $stmt = $this->conn->prepare($query);
+
+            if (!$stmt) {
+                error_log("User::createClientRecord() - Failed to prepare statement");
+                return false;
+            }
+
+            // Bind parameters
+            $stmt->bindParam(":user_id", $this->id);
+            $stmt->bindParam(":name", $this->first_name);
+            $stmt->bindParam(":surname", $this->last_name);
+
+            if ($stmt->execute()) {
+                $client_id = $this->conn->lastInsertId();
+                error_log("User::createClientRecord() - Success! New client ID: " . $client_id);
+                return true;
+            } else {
+                $errorInfo = $stmt->errorInfo();
+                error_log("User::createClientRecord() - Execute failed: " . print_r($errorInfo, true));
+                return false;
+            }
+        } catch (PDOException $e) {
+            error_log("User::createClientRecord() - PDO Exception: " . $e->getMessage());
+            return false;
+        } catch (Exception $e) {
+            error_log("User::createClientRecord() - General Exception: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Get client information for the current user
+     * @return array|null
+     */
+    public function getClientInfo()
+    {
+        try {
+            $query = "SELECT c.ID_client, c.name, c.surname, c.ID_membership, 
+                             m.type as membership_type, m.activation_date, m.expiration_date
+                      FROM clients c 
+                      LEFT JOIN membership m ON c.ID_membership = m.ID_membership
+                      WHERE c.user_id = :user_id LIMIT 1";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":user_id", $this->id);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            return null;
+        } catch (Exception $e) {
+            error_log("User::getClientInfo() - Exception: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Check if user has an active membership
+     * @return bool
+     */
+    public function hasActiveMembership()
+    {
+        $clientInfo = $this->getClientInfo();
+        
+        if (!$clientInfo || !$clientInfo['ID_membership']) {
+            return false;
+        }
+
+        // Check if membership is active (not expired)
+        if ($clientInfo['expiration_date']) {
+            $expiration = new DateTime($clientInfo['expiration_date']);
+            $now = new DateTime();
+            return $expiration > $now;
+        }
+
+        return false;
     }
 }
 ?>

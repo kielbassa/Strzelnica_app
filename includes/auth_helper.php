@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../classes/Session.php";
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "/../classes/User.php";
+require_once __DIR__ . "/../classes/Client.php";
 
 class AuthHelper
 {
@@ -70,13 +71,33 @@ class AuthHelper
             return null;
         }
 
-        return [
+        $userData = [
             "id" => $this->session->getUserId(),
             "email" => $this->session->getUserEmail(),
             "first_name" => $this->session->getUserFirstName(),
             "last_name" => $this->session->getUserLastName(),
             "full_name" => $this->session->getUserFullName(),
         ];
+
+        // Add client information if available
+        try {
+            $client = new Client($this->db);
+            if ($client->getByUserId($userData["id"])) {
+                $userData["client"] = [
+                    "client_id" => $client->ID_client,
+                    "membership_id" => $client->ID_membership,
+                    "membership_type" => $client->membership_type,
+                    "has_active_membership" => $client->hasActiveMembership(),
+                    "activation_date" => $client->activation_date,
+                    "expiration_date" => $client->expiration_date
+                ];
+            }
+        } catch (Exception $e) {
+            error_log("AuthHelper::getUserData() - Client info error: " . $e->getMessage());
+            $userData["client"] = null;
+        }
+
+        return $userData;
     }
 
     public function logout()
@@ -116,9 +137,19 @@ class AuthHelper
     {
         if ($this->isLoggedIn()) {
             $userData = $this->getUserData();
+            $membershipStatus = "";
+            
+            if (isset($userData["client"]) && $userData["client"]) {
+                if ($userData["client"]["has_active_membership"]) {
+                    $membershipStatus = " <small>(" . htmlspecialchars($userData["client"]["membership_type"]) . ")</small>";
+                } else {
+                    $membershipStatus = " <small>(Brak członkostwa)</small>";
+                }
+            }
+            
             return "
             <div class='user-info'>
-                <span>Witaj, {$userData["first_name"]}!</span>
+                <span>Witaj, {$userData["first_name"]}!{$membershipStatus}</span>
                 <button onclick='logout()' class='logout-btn'>Wyloguj</button>
             </div>";
         } else {
