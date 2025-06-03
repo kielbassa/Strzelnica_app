@@ -16,7 +16,7 @@ $userData = $auth->getUserData();
     <script src="../js/auth.js"></script>
   </head>
 
-<body>
+<body class="<?php echo $auth->isLoggedIn() ? 'user-logged-in' : ''; ?>">
   <!-- Flash messages -->
   <?php $auth->displayFlashMessage(); ?>
   
@@ -117,10 +117,10 @@ $userData = $auth->getUserData();
       </select>
 
       <label for="people" class="form-label">Liczba osób</label>
-      <input type="number" id="people" name="people" min="1" max="10" required>
+      <input type="number" id="people" name="people" min="1" max="8" required>
 
       <label for="instructor" class="form-label">Zajęcia z instruktorem?</label>
-      <select id="group" name="group" required>
+      <select id="instructor" name="instructor" required>
         <option value="nie">Nie</option>
         <option value="tak">Tak</option>
       </select>
@@ -147,6 +147,7 @@ $userData = $auth->getUserData();
     <script src="../js/navbar.js"></script>
     <script src="../js/date.js"></script>
     <script src="../js/user_auth.js"></script>
+    <script src="../js/reservation.js"></script>
     <script>
       // Modal functions
       function closeWelcomeModal() {
