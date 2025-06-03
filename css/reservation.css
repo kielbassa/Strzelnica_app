@@ -33,24 +33,34 @@ body {
   }
   
   .reservation {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: black;
-    padding: 2rem;
-    margin: 3rem auto;
-    max-width: 600px;
-    border-radius: 10px;
-  }
+      background-color: rgba(0, 0, 0, 0.6);
+      color: black;
+      padding: 2rem;
+      margin: 3rem auto;
+      max-width: 600px;
+      border-radius: 10px;
+    }
   
-  .reservation h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
+    .reservation h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
   
-  .reservation form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+    .reservation form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .login-required-message {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 10px;
+      border: 2px solid #ff3333;
+      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+    }
   
   .reservation select,
   .reservation input,
@@ -85,6 +95,23 @@ body {
   
   .reservation button:hover {
     background-color: darkred;
+  }
+  
+  .login-required-message a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .login-required-message a:hover {
+    background-color: darkred;
+    transform: scale(1.05);
   }
   
   .reservation-info {

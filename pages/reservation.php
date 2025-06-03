@@ -104,7 +104,7 @@ $userData = $auth->getUserData();
     </table>
   </div>
 
-
+  <?php if ($auth->isLoggedIn()): ?>
   <section class="reservation">
     <h2 class="reservation-title">Formularz rezerwacji</h2>
     <form id="reservation-form">
@@ -131,11 +131,18 @@ $userData = $auth->getUserData();
         <option value="tak">Tak</option>
       </select>
 
-
-
       <button type="submit">Zarezerwuj</button>
     </form>
   </section>
+  <?php else: ?>
+  <section class="reservation">
+    <div class="login-required-message">
+      <h2 class="reservation-title">Aby dokonać rezerwacji zaloguj się</h2>
+      <p>Rezerwacja dostępna jest tylko dla zalogowanych użytkowników.</p>
+      <a href="../pages/login.php">Zaloguj się</a>
+    </div>
+  </section>
+  <?php endif; ?>
 
 
     <footer>

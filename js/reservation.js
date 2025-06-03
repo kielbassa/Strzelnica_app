@@ -5,14 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         reservationForm.addEventListener('submit', function(event) {
             event.preventDefault();
             
-            // Check if user is logged in
-            if (!isLoggedIn()) {
-                showMessage('error', 'Musisz być zalogowany, aby dokonać rezerwacji');
-                setTimeout(() => {
-                    window.location.href = '../pages/login.php';
-                }, 2000);
-                return;
-            }
+            // No need to check login status here since the form is only displayed to logged-in users
             
             // Get form data
             const formData = new FormData(reservationForm);
@@ -27,6 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Validate form data
             if (!data.date || !data.time || !data.people || !data.instructor || !data.group) {
                 showMessage('error', 'Wszystkie pola formularza są wymagane');
+                return;
+            }
+            
+            // Additional validation
+            if (new Date(data.date) < new Date().setHours(0,0,0,0)) {
+                showMessage('error', 'Nie można dokonać rezerwacji na datę z przeszłości');
                 return;
             }
             
@@ -88,15 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function isLoggedIn() {
-        // Use the global function if available
-        if (typeof window.isLoggedIn === 'function') {
-            return window.isLoggedIn();
-        }
-        
-        // Fallback to checking if userData is defined in PHP context
-        return document.body.classList.contains('user-logged-in');
-    }
+    // Function is no longer needed since we only display the form to logged-in users
     
     function showMessage(type, message) {
         // Use userAuth.showMessage if available
