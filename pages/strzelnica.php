@@ -37,11 +37,19 @@ $userData = $auth->getUserData();
     </div>
   
     <div class="auth-links">
-      <div id="authContainer" class="auth-container">
-        <?php echo $auth->getLoginButton(); ?>
+        <div id="authContainer" class="auth-container">
+          <?php if ($userData): ?>
+            <div class="user-header-info">
+              <span class="welcome-header-text">Witaj, <?php echo htmlspecialchars($userData['full_name']); ?>!</span>
+              <a href="../pages/my-account.php" style="color: white; margin-right: 10px; text-decoration: none;">Moje Konto</a>
+              <a href="index.php?logout=true" class="logout-header-btn">Wyloguj się</a>
+            </div>
+          <?php else: ?>
+            <?php echo $auth->getLoginButton(); ?>
+          <?php endif; ?>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
     
   <!-- Flash messages -->
   <?php $auth->displayFlashMessage(); ?>
@@ -53,6 +61,9 @@ $userData = $auth->getUserData();
     <a href="reservation.php" class="nav-link">Rezerwacje</a>
     <a href="store.php" class="nav-link">Sklep</a>
     <a href="kontakt.php" class="nav-link">Kontakt</a>
+    <?php if ($auth->isLoggedIn()): ?>
+    <a href="../pages/my-account.php" class="nav-link">Moje Konto</a>
+    <?php endif; ?>
   </nav>
 </edits>
 
@@ -208,7 +219,7 @@ $userData = $auth->getUserData();
           <td>50 zł / h za osobę</td>
         </tr>
         <tr>
-          <td>Wynajem strzelnicy (rezerwacja całego obiektu do 10 osób)</td>
+          <td>Wynajem strzelnicy (rezerwacja całego obiektu do 8 osób)</td>
           <td>1000 zł / h</td>
         </tr>
         <tr>

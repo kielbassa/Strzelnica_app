@@ -54,7 +54,15 @@ $userData = $auth->getUserData();
 
             <div class="auth-links">
                 <div id="authContainer" class="auth-container">
-                    <?php echo $auth->getLoginButton(); ?>
+                    <?php if ($userData): ?>
+                        <div class="user-header-info">
+                            <span class="welcome-header-text">Witaj, <?php echo htmlspecialchars($userData['full_name']); ?>!</span>
+                            <a href="../pages/my-account.php" style="color: white; margin-right: 10px; text-decoration: none;">Moje Konto</a>
+                            <a href="index.php?logout=true" class="logout-header-btn">Wyloguj się</a>
+                        </div>
+                    <?php else: ?>
+                        <?php echo $auth->getLoginButton(); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -68,6 +76,9 @@ $userData = $auth->getUserData();
             <a href="../pages/reservation.php" class="nav-link">Rezerwacje</a>
             <a href="../pages/store.php" class="nav-link">Sklep</a>
             <a href="../pages/kontakt.php" class="nav-link">Kontakt</a>
+            <?php if ($auth->isLoggedIn()): ?>
+            <a href="../pages/my-account.php" class="nav-link">Moje Konto</a>
+            <?php endif; ?>
         </nav>
 
         <!-- Modal for welcome message -->
