@@ -8,9 +8,12 @@ Projekt zawiera prostą aplikację webową służącą do zarządzania strzelnic
 Strzelnica_app-main/
 ├── strzelnica.sql # Plik SQL do utworzenia bazy danych
 ├── admin/ # Panel administratora
-│ ├── admin-panel.html # Interfejs administratora
+│ ├── admin-panel-old.html # Interfejs administratora (old version)
 │ └── panel.css # Stylizacja panelu
+│ └── admin-panel.php # Interfejs administratora
+│ └── make-admin.php # Panel do zmiany użytkownika w admina
 ├── api/ # Backendowe API (PHP)
+│ ├── cancel.reservation.php # Anulowanie rezerwacji
 │ ├── check_session.php # Sprawdzanie aktywnej sesji
 │ ├── login.php # Logowanie użytkownika
 │ ├── logout.php # Wylogowywanie użytkownika
@@ -18,6 +21,7 @@ Strzelnica_app-main/
 │ ├── register.php # Rejestracja użytkownika
 │ └── reserve.php # Rezerwacja strzelnicy
 ├── classes/ # Klasy PHP
+│ ├── AdminPanel.php # Panel administratora
 │ ├── Client.php # Obsługa klienta
 │ ├── Session.php # Obsługa sesji
 │ └── User.php # Obsługa użytkownika
@@ -35,6 +39,7 @@ Strzelnica_app-main/
 ├── includes/ # Pomocnicze funkcje PHP
 │ └── auth_helper.php # Pomocnik do logiki autoryzacji
 ├── js/ # Skrypty JavaScript
+│ ├── account.js # Obłusga konta
 │ ├── auth.js # Obsługa logowania/rejestracji
 │ ├── buttons.js # Obsługa przycisków
 │ ├── cart.js # Obsługa koszyka
@@ -49,6 +54,7 @@ Strzelnica_app-main/
 │ ├── kontakt.html # Strona kontaktowa (statyczna)
 │ ├── kontakt.php # Strona kontaktowa (dynamiczna)
 │ ├── login.php # Logowanie
+│ ├── my-account.php # Konto użytkownika
 │ ├── register.php # Rejestracja
 │ ├── reservation.php # Rezerwacja
 │ ├── store.php # Sklep
