@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 01, 2025 at 09:44 PM
+-- Generation Time: Jun 04, 2025 at 07:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -115,7 +115,8 @@ INSERT INTO `clients` (`ID_client`, `user_id`, `name`, `surname`, `ID_membership
 (48, NULL, 'Andrzej', 'Grabowski', 49),
 (49, NULL, 'Maria', 'Kamińska', 37),
 (50, NULL, 'Joanna', 'Witkowska', 28),
-(151, 10, 'Karol', 'Narel', 1000);
+(151, 10, 'Karol', 'Narel', 1000),
+(152, 11, 'Adam', 'Grzegżółka', 1001);
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,8 @@ INSERT INTO `membership` (`ID_membership`, `type`, `activation_date`, `expiratio
 (49, 'VIP', '2025-05-24', '2025-06-24'),
 (50, 'VIP', '2025-05-27', '2025-06-27'),
 (999, 'No Membership', '1970-01-01', '1970-01-01'),
-(1000, 'Standard', '2025-06-01', '2025-07-01');
+(1000, 'Standard', '2025-06-01', '2025-07-01'),
+(1001, 'Vip', '2025-06-01', '2025-07-01');
 
 -- --------------------------------------------------------
 
@@ -303,7 +305,8 @@ INSERT INTO `reservations` (`ID_reservations`, `date`, `time`, `ID_client`, `par
 (57, '2025-06-23', '08:15:00', 46, 4, 1, 1),
 (58, '2025-06-23', '09:15:00', 47, 6, 0, 2),
 (59, '2025-06-23', '10:15:00', 48, 8, 1, 3),
-(60, '2025-06-23', '11:15:00', 49, 4, 0, 4);
+(60, '2025-06-23', '11:15:00', 49, 4, 0, 4),
+(61, '2025-06-04', '17:00:00', 151, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -558,15 +561,17 @@ CREATE TABLE `users` (
   `password_hash` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `is_active` tinyint(1) DEFAULT 1
+  `is_active` tinyint(1) DEFAULT 1,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci COMMENT='Tabela użytkowników systemu';
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password_hash`, `created_at`, `updated_at`, `is_active`) VALUES
-(10, 'Karol', 'Narel', 'karolnarel@gmail.com', '$2y$10$Co9I/yZKEFsTfk8UAcFJAeUezO0r4.iLpiS3yeMdNbXJt9qsSV2Am', '2025-06-01 19:41:28', '2025-06-01 19:41:43', 1);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password_hash`, `created_at`, `updated_at`, `is_active`, `is_admin`) VALUES
+(10, 'Karol', 'Narel', 'karolnarel@gmail.com', '$2y$10$Co9I/yZKEFsTfk8UAcFJAeUezO0r4.iLpiS3yeMdNbXJt9qsSV2Am', '2025-06-01 19:41:28', '2025-06-04 17:38:54', 1, 1),
+(11, 'Adam', 'Grzegżółka', 'adam@strzelnica.pl', '$2y$10$EYSrWY4bsFv8WQq2xmmTbOFakz9PLqWrP1hRJjpvaC6VpVbfvMiLe', '2025-06-01 20:08:25', '2025-06-01 20:10:49', 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -628,7 +633,8 @@ ALTER TABLE `transactions`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idx_users_admin` (`is_admin`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -644,7 +650,7 @@ ALTER TABLE `ammo`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ID_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `ID_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `guns`
@@ -656,13 +662,13 @@ ALTER TABLE `guns`
 -- AUTO_INCREMENT for table `membership`
 --
 ALTER TABLE `membership`
-  MODIFY `ID_membership` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+  MODIFY `ID_membership` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `ID_reservations` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ID_reservations` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `stations`
@@ -680,7 +686,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
