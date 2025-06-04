@@ -106,6 +106,12 @@ $userData = $auth->getUserData();
         <main class="cart-page">
             <h1>Twój koszyk</h1>
 
+            <div id="empty-cart-message" style="display: none;">
+                <h3>Twój koszyk jest pusty</h3>
+                <p>Dodaj produkty do koszyka, aby móc dokonać zakupu.</p>
+                <a href="../pages/store.php" style="color: red; text-decoration: none; font-weight: bold;">Przejdź do sklepu</a>
+            </div>
+
             <section id="cart-items"></section>
 
             <section class="cart-summary">

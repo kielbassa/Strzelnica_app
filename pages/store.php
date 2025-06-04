@@ -149,37 +149,22 @@ $userData = $auth->getUserData();
       </table>
 
       <h2>Lista dostępnej amunicji</h2>
-      <table>
+      <div id="loading-ammunition" style="text-align: center; padding: 40px; color: white;">
+        Ładowanie amunicji...
+      </div>
+      <table id="ammunition-table" style="display: none;">
         <thead>
           <tr>
             <th>Broń</th>
             <th>Amunicja</th>
             <th>Cena za 1 nabój</th>
             <th>Dostępna ilość</th>
+            <th>Ilość</th>
             <th>Akcja</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="category-row"><td colspan="5">Broń Krótka</td></tr>
-          <tr><td>Beretta 92 FS</td><td>9x19 mm</td><td>2.00 zł</td><td>500</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>Colt 1911</td><td>.45 ACP</td><td>3.60 zł</td><td>300</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>Glock 17 Gen.4</td><td>9x19 mm</td><td>2.00 zł</td><td>450</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>HK z tłumikiem</td><td>9x19 mm</td><td>2.80 zł</td><td>250</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>Vis 100</td><td>9x19 mm</td><td>2.40 zł</td><td>400</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>.357 Magnum</td><td>9x32Rmm</td><td>5.00 zł</td><td>100</td><td><button>Dodaj do koszyka</button></td></tr>
-
-          <tr class="category-row"><td colspan="5">Broń Długa</td></tr>
-          <tr><td>AR-15</td><td>.223 Rem</td><td>6.00 zł</td><td>200</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>kbk wz. 96D „Beryl”</td><td>5.56 NATO</td><td>4.00 zł</td><td>180</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>IWI Galil SAR</td><td>7.62x39 mm</td><td>6.50 zł</td><td>160</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>MSBS „Grot”</td><td>5.56 NATO</td><td>6.00 zł</td><td>150</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>AKMS „Kałasznikow”</td><td>7.62x39 mm</td><td>6.50 zł</td><td>170</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>M4</td><td>5.56 NATO</td><td>4.00 zł</td><td>200</td><td><button>Dodaj do koszyka</button></td></tr>
-
-          <tr class="category-row"><td colspan="5">Pistolety Maszynowe</td></tr>
-          <tr><td>PM-84P „Glauberyt”</td><td>9x19 mm</td><td>2.40 zł</td><td>300</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>IWI UZI</td><td>9x19 mm</td><td>2.40 zł</td><td>250</td><td><button>Dodaj do koszyka</button></td></tr>
-          <tr><td>MP 40</td><td>9x19 mm</td><td>1.60 zł</td><td>180</td><td><button>Dodaj do koszyka</button></td></tr>
+        <tbody id="ammunition-tbody">
+          <!-- Dynamic content will be loaded here -->
         </tbody>
       </table>
 
@@ -282,6 +267,7 @@ $userData = $auth->getUserData();
     <script src="../js/cart.js"></script>
     <script src="../js/membership.js"></script>
     <script src="../js/user_auth.js"></script>
+    <script src="../js/store.js"></script>
     <script>
       // Modal functions
       function closeWelcomeModal() {

@@ -120,8 +120,53 @@
     max-width: 100%; 
 }
 
-.store button:hover {
+.store button:hover:not(:disabled) {
     background-color: darkred;
+}
+
+.store button:disabled {
+    background-color: #666;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: red;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+.add-to-cart-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-width: 140px;
+    white-space: nowrap;
+}
+
+.stock-amount {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.stock-amount[data-ammo-id] {
+    position: relative;
+}
+
+.stock-amount[data-ammo-id]:after {
+    content: " szt.";
+    font-weight: normal;
+    color: #ccc;
 }
 
 .go-to-cart-wrapper {
