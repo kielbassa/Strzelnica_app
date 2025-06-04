@@ -13,6 +13,7 @@ class User
     public $created_at;
     public $updated_at;
     public $is_active;
+    public $is_admin;
 
     public function __construct($db)
     {
@@ -123,7 +124,7 @@ class User
     public function login($email, $password)
     {
         $query =
-            "SELECT id, first_name, last_name, email, password_hash, is_active
+            "SELECT id, first_name, last_name, email, password_hash, is_active, is_admin
                   FROM " .
             $this->table_name .
             "
@@ -144,6 +145,7 @@ class User
                 $this->last_name = $row["last_name"];
                 $this->email = $row["email"];
                 $this->is_active = $row["is_active"];
+                $this->is_admin = $row["is_admin"];
 
                 return true;
             }
@@ -154,7 +156,7 @@ class User
     public function getUserById($id)
     {
         $query =
-            "SELECT id, first_name, last_name, email, is_active
+            "SELECT id, first_name, last_name, email, is_active, is_admin
                   FROM " .
             $this->table_name .
             "
@@ -172,6 +174,7 @@ class User
             $this->last_name = $row["last_name"];
             $this->email = $row["email"];
             $this->is_active = $row["is_active"];
+            $this->is_admin = $row["is_admin"];
 
             return true;
         }
@@ -290,6 +293,15 @@ class User
         }
 
         return false;
+    }
+
+    /**
+     * Check if user is an admin
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin == 1;
     }
 }
 ?>

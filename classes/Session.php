@@ -12,6 +12,7 @@ class Session {
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_first_name'] = $user->first_name;
         $_SESSION['user_last_name'] = $user->last_name;
+        $_SESSION['is_admin'] = $user->is_admin;
 
         $_SESSION['is_logged_in'] = true;
         $_SESSION['login_time'] = time();
@@ -31,6 +32,18 @@ class Session {
         
         // Destroy session
         session_destroy();
+    }
+    
+    public function requireAdmin() {
+        if (!$this->isLoggedIn()) {
+            header('Location: ../pages/login.php');
+            exit;
+        }
+        
+        if (!$this->isAdmin()) {
+            header('Location: ../pages/index.php?error=access_denied');
+            exit;
+        }
     }
     
     public function isLoggedIn() {
@@ -53,8 +66,10 @@ class Session {
         return isset($_SESSION['user_last_name']) ? $_SESSION['user_last_name'] : null;
     }
     
+    public function isAdmin() {
+        return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
+    }
 
-    
     public function getUserFullName() {
         if ($this->isLoggedIn()) {
             return $this->getUserFirstName() . ' ' . $this->getUserLastName();

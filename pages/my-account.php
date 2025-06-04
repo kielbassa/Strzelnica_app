@@ -263,6 +263,9 @@ if (isset($userData["client"]) && $userData["client"]) {
         <a href="../pages/store.php" class="nav-link">Sklep</a>
         <a href="../pages/kontakt.php" class="nav-link">Kontakt</a>
         <a href="../pages/my-account.php" class="nav-link active">Moje Konto</a>
+        <?php if ($auth->isAdmin()): ?>
+        <a href="../admin/admin-panel.php" class="nav-link">Panel Administratora</a>
+        <?php endif; ?>
     </nav>
 
     <div class="account-container">

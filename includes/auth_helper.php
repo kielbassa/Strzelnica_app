@@ -38,6 +38,25 @@ class AuthHelper
         $this->session->refreshSession();
     }
 
+    public function requireAdmin()
+    {
+        $this->requireLogin(); // First ensure user is logged in
+        
+        if (!$this->session->isAdmin()) {
+            $this->session->setFlashMessage(
+                "error",
+                "Nie masz uprawnień administratora."
+            );
+            header("Location: ../pages/index.php");
+            exit();
+        }
+    }
+
+    public function isAdmin()
+    {
+        return $this->session->isLoggedIn() && $this->session->isAdmin();
+    }
+
     public function preventLoginAccess()
     {
         if ($this->session->isLoggedIn()) {

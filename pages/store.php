@@ -64,7 +64,10 @@ $userData = $auth->getUserData();
     <?php if ($auth->isLoggedIn()): ?>
     <a href="../pages/my-account.php" class="nav-link">Moje Konto</a>
     <?php endif; ?>
-  </nav>
+    <?php if ($auth->isAdmin()): ?>
+    <a href="../admin/admin-panel.php" class="nav-link">Panel Administratora</a>
+    <?php endif; ?>
+</nav>
 
   <!-- Modal for welcome message -->
   <?php if ($userData): ?>
